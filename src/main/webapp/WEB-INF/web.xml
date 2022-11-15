@@ -4,9 +4,10 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>first-servlet</servlet-name>
-        <servlet-class>letscode.MainServlet</servlet-class>
+    <servlet-name>first-servlet</servlet-name>
+    <servlet-class>letscode.MainServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>first-servlet</servlet-name>
         <url-pattern>/my-servlet</url-pattern>
@@ -14,25 +15,7 @@
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/static/*</url-pattern>
+        <url-pattern>/*</url-pattern>
+<!--        это значит что он будет принимать любые запросы которые будут попадать в наш servlet после нашего "my-servlet"-->
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>jsp-servlet</servlet-name>
-        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>jsp-servlet</servlet-name>
-        <url-pattern>*.jsp</url-pattern>
-    </servlet-mapping>
-
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-
-    <taglib>
-        <taglib-uri>letscodeTags</taglib-uri>
-        <taglib-location>/WEB-INF/letscode-tags.tld</taglib-location>
-    </taglib>
 </web-app>

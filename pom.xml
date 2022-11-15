@@ -10,6 +10,8 @@
 
     <packaging>war</packaging>
 
+
+
     <build>
         <plugins>
             <plugin>
@@ -19,6 +21,7 @@
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
+<!--                        название приложения-->
                         <contextPath>/my-app</contextPath>
                     </webApp>
                 </configuration>

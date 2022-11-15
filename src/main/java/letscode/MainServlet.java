@@ -1,5 +1,5 @@
 package letscode;
-
+// 12:31
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = {"/cool-servlet", "/my-cool-servlet/*"})
+@WebServlet(urlPatterns = {"/cool-servlet", "/my-cool-servlet/*"}) // если наш URL будет начинаться с указанного слова servlet и дальше неважно что, он будет попадать сюда
 public class MainServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -19,28 +20,21 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().write("Method service enter\n");
+        resp.getWriter().write("method service enter\n");
         super.service(req, resp);
-        resp.getWriter().write("Method service exit\n");
+        // напишем сообщение клиенту
+        resp.getWriter().write("method service exit\n");
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String uri = req.getRequestURI();
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String url = req.getRequestURI(); // здесь хранится та часть урла, которая адресует текущий сервлет(/my-app/my-cool-servlet/more/hello)
         String params = formatParams(req);
-
-        resp.getWriter().write("Method doGet\nURI: " + uri + "\nParams:\n" + params + "\n");
+        // напишем сообщение клиенту
+        resp.getWriter().write("method doGet\nURL: " + url + "\nParams: \n" + params + "\n");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String uri = req.getRequestURI();
-        String params = formatParams(req);
-
-        resp.getWriter().write("Method doPost\nURI: " + uri + "\nParams:\n" + params + "\n");
-    }
-
-    private String formatParams(HttpServletRequest req) {
+    private static String formatParams(HttpServletRequest req) {
         return req.getParameterMap()
                 .entrySet()
                 .stream()
